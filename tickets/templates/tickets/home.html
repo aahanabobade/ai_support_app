@@ -1,0 +1,33 @@
+{% extends 'tickets/base.html' %}
+{% block title %}Home • Support System{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Welcome to EduvanceAI Support System!</h1>
+    <p class="mb-4">Choose your role to continue.</p>
+
+    <a href="{% url 'login' %}?role=customer" class="btn btn-primary btn-lg me-2 gradient-btn">Customer</a>
+    
+    <a href="{% url 'login' %}?role=admin" class="btn btn-primary btn-lg me-2 gradient-btn">Admin</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<style>
+    .gradient-btn {
+        background: linear-gradient(135deg, #5a5aff, #00d4ff);
+        color: #fff;
+        border: none;
+        transition: all 0.3s ease;
+        border-radius: 50px;
+    }
+    .gradient-btn:hover {
+        background: linear-gradient(135deg, #ede02aff, #ffd30dff);
+        transform: scale(1.05);
+        color: #fff;
+    }
+    h1, p {
+        color: #fff;
+    }
+</style>
+{% endblock %}

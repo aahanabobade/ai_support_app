@@ -1,0 +1,155 @@
+/* Dark mode background with gradient */
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* Semi-bold headings */
+}
+
+p, span, li, a {
+    font-weight: 400; /* Normal body text */
+}
+
+.gradient-btn {
+    background: linear-gradient(135deg, #5a5aff, #00d4ff);
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    border-radius: 110px; /* added rounded corners */
+}
+
+
+.container {
+    background: rgba(0, 0, 0, 0.6); /* slightly transparent container */
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Buttons with gradient and hover effect */
+.btn-primary {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 50px; 
+    color: #000000;
+    
+
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #ffd200, #f7971e);
+    color: #000000;
+    border-radius: 50px; 
+}
+
+.btn-warning {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 50px; 
+    margin-top: auto;
+    
+}
+
+
+
+.btn-warning:hover {
+    background: linear-gradient(45deg, #ffd200, #f7971e);
+    color: #fff;
+    border-radius: 50px; 
+}
+
+/* Card or container styling */
+.container {
+    background-color: rgba(0, 0, 0, 0.6); /* semi-transparent dark background */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Gradient buttons */
+.btn-gradient {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    
+}
+.btn-gradient:hover {
+    opacity: 0.9;
+}
+
+/* Gradient table header */
+.table-gradient {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+}
+
+/* Dark body background */
+body {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+/* White border for input/textarea */
+input.border-white, textarea.border-white {
+    border: 1px solid #ffffff !important;
+    background-color: #1e1e2f; /* Dark background */
+    color: #e0e0e0; /* Text color */
+}
+
+/* Ensure submit button text is white */
+.btn-gradient.text-white {
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #60447d, #2575fc);
+    color: #fff;
+    border-radius: 50px;
+    border: none;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+.btn-warning.btn-sm {
+    padding: 0.25rem 0.5rem !important; /* adjust vertical/horizontal padding */
+    line-height: 1.2 !important;         /* align text vertically */
+    height: auto !important;             /* let height adjust to content */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ai-response-box {
+    background-color: rgba(0, 123, 255, 0.1); /* subtle blue background */
+    border-left: 4px solid #007bff;          /* vertical accent line */
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    white-space: pre-wrap;                    /* preserves newlines */
+}
+
+.ai-response-box ol,
+.ai-response-box ul {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.ai-response-box li {
+    margin-bottom: 0.3rem;
+}
+
+.container {
+    padding-top: 1rem;   /* reduce top padding */
+    padding-bottom: 1rem; /* reduce bottom padding */
+}

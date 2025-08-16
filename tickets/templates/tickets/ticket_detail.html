@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Detail • Support System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+</head>
+<body class="bg-dark text-light">
+
+<div class="container mt-3">
+    <h1 class="mb-3 text-gradient">{{ ticket.subject }}</h1>
+    
+    <p><strong>Category:</strong> {{ ticket.category }}</p>
+    <p><strong>Message:</strong> {{ ticket.message }}</p>
+    <p><strong>Status:</strong> 
+        <span class="badge {% if ticket.status == 'Replied' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+            {% if ticket.status == 'Replied' %}
+                {% if ticket.ai_generated %}AI Replied{% else %}Manual Replied{% endif %}
+            {% else %}
+                Pending
+            {% endif %}
+        </span>
+    </p>
+
+    {% if ticket.ai_generated %}
+        <div class="alert alert-info p-2">
+            <small><strong>AI Generated:</strong> This response was created by our AI assistant.</small>
+        </div>
+    {% endif %}
+
+    <form id="ai-form" method="POST" class="p-4 rounded shadow-dark bg-dark-gradient">
+        {% csrf_token %}
+        <input type="hidden" id="ai_generated" name="ai_generated" value="{% if ticket.ai_generated %}true{% else %}false{% endif %}">
+
+        <h5>
+            {% if ticket.ai_generated %}
+                AI Suggested Response:
+            {% else %}
+                Response:
+            {% endif %}
+        </h5>
+
+        <textarea id="ai-response-text" name="response_text" 
+          class="form-control bg-dark text-light border-white" rows="15" style="margin-bottom:15px;">{% if ticket.response %}{{ ticket.response }}{% endif %}</textarea>
+
+        
+        <button type="button" id="generate-ai" class="btn btn-info me-3">Generate/Regenerate AI Response</button>
+        <button type="submit" name="submit_response" class="btn btn-info me-3">
+            Submit Response <span class="ms-2">&#10148;</span>
+        </button>
+    </form>
+
+    <a href="{% url 'admin_ticket_list' %}" class="btn btn-secondary mt-3">Back to Tickets</a>
+</div>
+
+<script>
+$(document).ready(function(){
+    const aiResponseTextarea = $("#ai-response-text");
+    const statusBadge = $("span.badge");
+    const aiGeneratedInput = $("#ai_generated");
+
+    // AI generate button
+    $("#generate-ai").click(function(){
+        $.ajax({
+            url: "{% url 'generate_ai_response' ticket.id %}",
+            type: "GET",
+            success: function(data){
+                aiResponseTextarea.val(data.ai_response);
+                aiGeneratedInput.val("true"); // mark as AI
+                statusBadge.text("AI Replied");
+                statusBadge.removeClass("bg-warning text-dark bg-success").addClass("bg-info");
+            },
+            error: function(){
+                alert("Error generating AI response.");
+            }
+        });
+    });
+
+    // Detect manual typing
+    aiResponseTextarea.on("input", function(){
+        aiGeneratedInput.val("false"); // mark as manual
+        statusBadge.text(""); 
+        statusBadge.removeClass("bg-info").addClass("bg-success");
+    });
+});
+</script>
+
+</body>
+</html>

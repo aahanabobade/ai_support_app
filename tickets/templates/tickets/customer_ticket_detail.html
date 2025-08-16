@@ -1,0 +1,31 @@
+{% extends 'tickets/base.html' %}
+{% block title %}Ticket Details • Support System{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2 class="text-light">{{ ticket.subject }}</h2>
+    <p><strong>Category:</strong> {{ ticket.category }}</p>
+    <p><strong>Message:</strong></p>
+    <div class="p-3 bg-dark rounded text-light mb-3">{{ ticket.message|linebreaksbr }}</div>
+
+    <p><strong>Status:</strong> 
+        <span class="badge {% if ticket.status == 'Replied' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+            {{ ticket.status }}
+        </span>
+    </p>
+
+    <p><strong>Admin Reply:</strong></p>
+    {% if ticket.response %}
+        <div class="border rounded p-3 bg-dark text-light">
+            <div class="ai-response-box">{{ ticket.response|linebreaksbr }}</div>
+            <div class="small text-muted mt-1">by {{ ticket.responder.username }}</div>
+        </div>
+    {% else %}
+        <em class="text-warning">Pending…</em>
+    {% endif %}
+
+    <a href="{% url 'customer_ticket_list' %}" class="btn btn-lg btn-secondary rounded-pill mt-3 d-block mx-auto" style="width: fit-content;">
+        Back to My Tickets
+    </a>
+</div>
+{% endblock %}

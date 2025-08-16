@@ -1,0 +1,52 @@
+{% extends 'tickets/base.html' %}
+{% block title %}All Tickets • Support System{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-light mb-4">All Tickets</h1>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-striped align-middle">
+            <thead class="table-gradient">
+                <tr>
+                    <th>Subject</th>
+                    <th>Customer</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td>
+                        {{ ticket.subject }}
+                        {% if ticket.ai_generated %}
+                        <span class="badge bg-info text-dark ms-1" title="AI-generated response">AI</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ ticket.customer.username }}</td>
+                    <td>{{ ticket.category }}</td>
+                    <td>
+                        <span class="badge {% if ticket.status == 'Replied' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                            {{ ticket.status }}
+                        </span>
+                    </td>
+                    <td>{{ ticket.created_at|date:"M d, Y H:i" }}</td>
+                    <td>
+                        <a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-gradient btn-sm text-white">View</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-light">No tickets found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3 text-dark">Back to Home</a>
+</div>
+{% endblock %}

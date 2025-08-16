@@ -1,0 +1,28 @@
+{% extends 'tickets/base.html' %}
+{% block title %}Create Ticket • Support System{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-light mb-4">Create a New Ticket</h2>
+
+    <form method="POST" class="p-4 rounded shadow-dark bg-dark-gradient">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label text-light">Subject</label>
+            <input type="text" name="subject" class="form-control bg-dark text-light border-white" value="{{ form.subject.value|default:'' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-light">Message</label>
+            <textarea name="message" class="form-control bg-dark text-light border-white" rows="15" required>{{ form.message.value|default:'' }}</textarea>
+        </div>
+
+       <div class="text-center mt-3">
+    <button type="submit" class="btn btn-secondary">
+        Submit Ticket <span class="ms-2">&#10148;</span>
+    </button>
+</div>
+
+    </form>
+</div>
+{% endblock %}
