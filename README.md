@@ -1,6 +1,6 @@
 ### AI-Powered Customer Support Interface
 ---
-EduvanceAI is a simple AI-powered customer support interface that allows support agents to view customer queries, respond manually, or auto-generate AI-powered responses. It provides role-based login for customers and admins, ticket creation and tracking, and AI-assisted classification and response.
+A simple AI-powered customer support system where support agents can view customer queries, respond manually, or auto-generate AI responses. Customers can create tickets, view their status, and communicate with support efficiently.
 
 ---
 ### Features 
@@ -37,7 +37,15 @@ If requirements.txt does not exist, generate it using:
 ```bash
 pip freeze > requirements.txt
 ```
-4. Set Gemini API Key
+4. Configure Environment Variables
+
+Create a .env file in the root directory with:
+  
+```bash
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+5. Set Gemini API Key
 ```bash
 # macOS/Linux
 export GEMINI_API_KEY='your_gemini_api_key_here'
@@ -45,13 +53,13 @@ export GEMINI_API_KEY='your_gemini_api_key_here'
 # Windows (PowerShell)
 setx GEMINI_API_KEY "your_gemini_api_key_here"
 ```
-5. Run Database Management system
+6. Run Database Management system
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. Run the server
+7. Run the server
 ```bash
 python manage.py runserver
 ```
@@ -72,6 +80,20 @@ Open your browser and visit: http://127.0.0.1:8000/
 3. No Multi-language Support: Currently supports only English.
 4. Basic UI/UX: Focus is on functionality rather than advanced design.
 5. Admin Panel Role Check: Admin cannot act as customer, but the interface is basic and could be enhanced with detailed role validation messages.
+6. No real-time updates; AI response generation is synchronous
+7. No file attachments for tickets
+8. AI classification may sometimes default to General if uncertain.
+9. Currently tested with small datasets and single server deployment
+
+### Usage
+1. Customer: Register → Login → Create ticket → View ticket status → Chat with support
+2. Admin: Login → View all tickets → Generate/Regenerate AI response → Update ticket status
+
+### Requirements
+All dependencies are included in requirements.txt. Install them via:
+```bash
+pip install -r requirements.txt
+```
 
 ### Tech Stack
 
@@ -81,16 +103,10 @@ Open your browser and visit: http://127.0.0.1:8000/
 4. Basic UI/UX: Focus is on functionality rather than advanced design.
 5. Admin Panel Role Check: Admin cannot act as customer, but the interface is basic and could be enhanced with detailed role validation messages.
 
-### How to use
-
-1. Register as a new customer or log in as an existing one.
-2. Customers can create tickets with messages describing their issues.
-3. Admins can:
-    a. View all tickets.
-    b. Manually respond to tickets
-    c. Auto-generate responses via AI
-    d. Re-generate AI responses if needed
-4. Customers can view replies and ticket status.
+### Future Improvements
+1. Real-time notifications for ticket updates
+2. File attachments and rich text support for tickets
+3. Multi-language support for AI responses
 
 ### Contact/Support
 This project is maintained by Aahana Bobade. For any issues or questions regarding setup or usage, please contact via GitHub or email(aahanabobade@gmail.com).
